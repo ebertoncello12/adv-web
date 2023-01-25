@@ -1,0 +1,26 @@
+name: CI-BUILDER-RELEASE
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: 'Update branch'
+        uses: Logerfo/gitflow-action@0.0.4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          dev: develop
+          master: main
+          label: gitflow
+          auto-merge: true
+          require-merge: false

@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  yarn:
+    image: node:16.13.2
+    networks:
+      - net_api_skeleton
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+      - "4173:4173"
+    working_dir: /app
+    volumes:
+      - ./app/:/app/
+    entrypoint: yarn
+
+networks:
+  net_api_skeleton:
+    external: true
