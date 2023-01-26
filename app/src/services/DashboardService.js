@@ -6,7 +6,7 @@ import { CodeErrorMessage } from '../constants/CodeErrorMessage';
 export const getDashboard = () => {
   return async (dispatch) => {
     try {
-      const { data } = await instanceAxios.get(`/v1/admin/dashboard`);
+      const { data } = await instanceAxios.get(`/v1/dashboard`);
       return data;
     } catch (e) {
       dispatch(

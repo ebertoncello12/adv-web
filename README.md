@@ -1,4 +1,4 @@
-## Skeleton React
+## Treinamento React
 
 #### 1. Requisitos necessários
 
@@ -41,15 +41,6 @@
     * bugfix/LGPD-xx (Correções de bugs)
   * release (Temporária pra ambiente de homologação)
     * pacote de versão para teste a partir da branch `develop`, após testada será feito o merge na branch `main`
-
-#### 4. Configuração para deploy via github
-
-Configurar as variaveis abaixo no menu `Settings > Secrets > Actions`:
-
-- AWS_ACCESS_KEY_ID
-- AWS_SECRET_ACCESS_KEY
-- VITE_APP_BASE_URL
-- VITE_APP_X_API_KEY
 
 ### 5. Theme base
 

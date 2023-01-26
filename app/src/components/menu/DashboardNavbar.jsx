@@ -19,7 +19,6 @@ import { signOut } from '../../services/AuthenticatorService';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
-import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate } from 'react-router';
 import { getPayload } from '../../helpers/AuthenticatorHelper';
 
@@ -65,11 +64,6 @@ export const DashboardNavbar = (props) => {
   const logout = () => {
     dispatch(signOut);
     window.location.href = '/login';
-  };
-
-  const goProfile = () => {
-    navigate('/trocar-senha');
-    handleClose();
   };
 
   return (
@@ -148,12 +142,6 @@ export const DashboardNavbar = (props) => {
                 />
               </MenuItem>
               <Divider />
-              <MenuItem onClick={goProfile}>
-                <ListItemIcon>
-                  <PersonIcon fontSize="medium" />
-                </ListItemIcon>
-                <ListItemText>Perfil</ListItemText>
-              </MenuItem>
               <MenuItem onClick={logout}>
                 <ListItemIcon>
                   <LogoutIcon fontSize="medium" />

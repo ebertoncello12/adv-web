@@ -4,12 +4,8 @@ import MainLayout from './layout/MainLayout';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/dashboard/Dashboard';
-import UserList from './pages/user/UserList';
 import RecoverPassword from './pages/RecoverPassword';
 import { SetVerifyPassword } from './pages/SetVerifyPassword';
-import UserAdd from './pages/user/UserAdd';
-import UserEdit from './pages/user/UserEdit';
-import { UserChangePassword } from './pages/user/UserChangePassword';
 import AccessDenied from './pages/AccessDenied';
 
 const routes = (currentUser) => {
@@ -25,22 +21,6 @@ const routes = (currentUser) => {
         {
           path: '/dashboard',
           element: <Dashboard />,
-        },
-        {
-          path: '/usuario',
-          element: <UserList />,
-        },
-        {
-          path: '/usuario/editar/:id',
-          element: <UserEdit />,
-        },
-        {
-          path: '/usuario/adicionar',
-          element: <UserAdd />,
-        },
-        {
-          path: '/trocar-senha',
-          element: <UserChangePassword />,
         },
         { path: '403', element: <AccessDenied /> },
       ],

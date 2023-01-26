@@ -1,9 +1,9 @@
 {
-  "name": "skeleton_web",
+  "name": "treinamento_web",
   "version": "1.0.0",
   "author": "BHUT Soluções em Tecnologia",
   "license": "MIT",
-  "description": "skeleton_web",
+  "description": "treinamento_web",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,8 +14,7 @@
     "lint": "eslint .",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --check \"**/*.+(js|jsx|json)\"",
-    "format:fix": "prettier --write \"**/*.+(js|jsx|json)\"",
-    "deploy": "aws s3 sync dist/ s3://skeleton.web --acl public-read"
+    "format:fix": "prettier --write \"**/*.+(js|jsx|json)\""
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",

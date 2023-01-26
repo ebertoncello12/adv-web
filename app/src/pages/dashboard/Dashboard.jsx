@@ -4,11 +4,9 @@ import { CardQuantityDashboard } from '../../components/dashboard/CardQuantityDa
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDashboard } from '../../services/DashboardService';
-import { useNavigate } from 'react-router';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [dasboardData, setDashboardData] = useState({
     usuariosTotal: 0,
     usuariosAtivos: 0,
@@ -37,10 +35,6 @@ const Dashboard = () => {
     };
   });
 
-  const navigateTo = (route, data) => {
-    navigate(route, { state: data });
-  };
-
   return (
     <>
       <Helmet>
@@ -53,25 +47,16 @@ const Dashboard = () => {
               loading={loading.toString()}
               title="Usuários"
               quantity={dasboardData?.usuariosTotal || 0}
-              onClick={() => {
-                navigateTo('/usuario', { status: null });
-              }}
             />
             <CardQuantityDashboard
               loading={loading.toString()}
               title="Usuários ativos"
               quantity={dasboardData?.usuariosAtivos || 0}
-              onClick={() => {
-                navigateTo('/usuario', { status: 'true' });
-              }}
             />
             <CardQuantityDashboard
               loading={loading.toString()}
               title="Usuários inátivos"
               quantity={dasboardData?.usuariosInativos || 0}
-              onClick={() => {
-                navigateTo('/usuario', { status: 'false' });
-              }}
             />
           </>
         </Grid>

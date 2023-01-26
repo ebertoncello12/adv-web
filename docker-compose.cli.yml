@@ -4,7 +4,7 @@ services:
   yarn:
     image: node:16.13.2
     networks:
-      - net_api_skeleton
+      - net_api_treinamento
     env_file:
       - .env
     ports:
@@ -16,5 +16,5 @@ services:
     entrypoint: yarn
 
 networks:
-  net_api_skeleton:
+  net_api_treinamento:
     external: true
