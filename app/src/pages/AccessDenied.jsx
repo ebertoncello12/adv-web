@@ -29,7 +29,7 @@ const AccessDenied = () => {
           color="primary"
           variant="contained"
           onClick={() => {
-            navigateTo('/dashboard');
+            navigateTo('/home');
           }}
         >
           VOLTAR

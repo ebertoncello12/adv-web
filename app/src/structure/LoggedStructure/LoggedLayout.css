@@ -1,0 +1,68 @@
+.App{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+.AppHeader{
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px 4px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #45070D;
+
+}
+.AppFooter {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+}
+
+.AppFooter .iconContainer {
+    margin-bottom: 1rem;
+}
+
+.AppFooter .textContainer {
+    text-align: center;
+}
+
+.SideMenuAndPageContent{
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.05) ;
+}
+.SideMenu{
+    background-color: #45070D;
+    height: 100%;
+    width: 200px;
+}
+.SideMenuVertical{
+    background-color: #45070D;
+    height: 100%;
+}
+.SideMenuVertical .ant-menu-item,
+.SideMenuVertical .ant-menu-submenu-title {
+    color: white !important;
+}
+
+.SideMenuVertical .ant-menu-item:hover,
+.SideMenuVertical .ant-menu-submenu-title:hover {
+    color: white !important;
+}
+
+.SideMenuVertical .ant-menu-item-selected {
+    background-color: rgba(255, 255, 255, 0.1) !important; /* O fundo do item selecionado com uma opacidade */
+    color: white !important;
+}
+
+.PageContent{
+    padding-left: 12px;
+}

@@ -1,0 +1,36 @@
+.unloggedLayoutRoot {
+    background-color: #094298;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.unloggedLayoutWrapper {
+    display: flex;
+    flex: 1 1 auto;
+    overflow: hidden;
+    padding-top: 64px;
+}
+
+.mainLayoutContainer {
+    display: flex;
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+.unloggedLayoutContent {
+    flex: 1 1 auto;
+    height: 100%;
+    overflow: auto;
+}
+html, body, #root {
+    height: 100%;
+    margin: 0;
+}
+
+.mainLayoutWrapper {
+    height: calc(100% - 64px); /* Subtraindo a altura do cabeçalho */
+}
+

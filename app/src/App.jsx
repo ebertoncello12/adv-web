@@ -1,25 +1,28 @@
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { useRoutes } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material';
-import { theme } from './theme';
-import routes from './Routes';
+import routes from './config/routes.jsx';
 import { Provider } from 'react-redux';
-import { CssBaseline } from '@mui/material';
 import store from './store';
-import AlertSnackbars from './components/alerts/AlertSnackbars';
-import LoadingCircularProgress from './components/loading/LoadingCircularProgress';
+
+import { GlobalStyle } from './styles/style.js';
+import React from 'react';
+import LoadingWrapper from './components/loading/LoadingWrapper.jsx';
+import LoadingIndicator from './components/loading/LoadingIndicator.jsx';
+import { LoadingProvider } from './hooks/LoadingContext.jsx';
 
 const App = () => {
   const { currentUser } = store.getState().user;
   const routing = useRoutes(routes(currentUser));
+
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AlertSnackbars />
-        <LoadingCircularProgress />
-        {routing}
-      </ThemeProvider>
+      <LoadingProvider>
+        <LoadingIndicator />
+        <LoadingWrapper>
+          <GlobalStyle />
+          {routing}
+        </LoadingWrapper>
+      </LoadingProvider>
     </Provider>
   );
 };

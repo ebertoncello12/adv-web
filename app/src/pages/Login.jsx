@@ -1,27 +1,21 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import LoginIcon from '@mui/icons-material/Login';
-import {
-  Box,
-  Button,
-  Card,
-  Container,
-  Divider,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { signIn } from '../services/AuthenticatorService';
+import { Form, Input, Button, Card, Typography, Divider } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from 'react';
+import InputMask from 'react-input-mask';
+import {login} from "../services/Authenticator.js";
+
+const { Title } = Typography;
 
 const Login = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const onSubmit = async (values) => {
-    await dispatch(signIn(values, navigate));
+  const onFinish = async (values) => {
+    const cleanedUsername = values.username.replace(/[.-]/g, '');
+    try {
+      console.log(values)
+      await login(cleanedUsername, values.password);
+    } catch (error) {}
   };
 
   return (
@@ -29,100 +23,52 @@ const Login = () => {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <Box
-        sx={{
-          backgroundColor: 'background.default',
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%',
-          justifyContent: 'center',
+      <Card
+        style={{
+          width: '400px',
+          margin: 'auto',
+          marginTop: '10%',
+          textAlign: 'center',
         }}
       >
-        <Container maxWidth="sm">
-          <Card sx={{ mt: '20%', p: 5, textAlign: 'center' }}>
-            <Formik
-              initialValues={{
-                login: '',
-                senha: '',
-              }}
-              validationSchema={Yup.object().shape({
-                login: Yup.string().required('Login inválido'),
-                senha: Yup.string()
-                  .required('Senha é obrigatório')
-                  .required('Senha inválido'),
-              })}
-              onSubmit={async (values) => {
-                await onSubmit(values);
-              }}
+        <Title level={3}>Login</Title>
+        <Divider />
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+        >
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: 'Por favor, insira seu CPF!' }]}
+          >
+            <InputMask mask="999.999.999-99" maskChar="">
+              {() => <Input prefix={<UserOutlined />} placeholder="CPF" />}
+            </InputMask>
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: 'Por favor, insira sua senha!' }]}
+          >
+            <Input prefix={<LockOutlined />} type="password" placeholder="Senha" />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+              style={{ width: '100%', backgroundColor: '#45070D' }}
             >
-              {({
-                errors,
-                handleBlur,
-                handleChange,
-                handleSubmit,
-                touched,
-                values,
-              }) => (
-                <form onSubmit={handleSubmit}>
-                  <Box sx={{ textAlign: 'left', mb: 1 }}>
-                    <Typography color="textPrimary" variant="h5">
-                      Login
-                    </Typography>
-                  </Box>
-                  <Divider sx={{ mb: 2 }} />
-                  <TextField
-                    error={Boolean(touched.login && errors.login)}
-                    fullWidth
-                    helperText={touched.login && errors.login}
-                    label="Usuário"
-                    margin="normal"
-                    name="login"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    type="text"
-                    value={values.login}
-                    variant="outlined"
-                  />
-                  <TextField
-                    error={Boolean(touched.senha && errors.senha)}
-                    fullWidth
-                    helperText={touched.senha && errors.senha}
-                    label="Senha"
-                    margin="normal"
-                    name="senha"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    type="password"
-                    value={values.senha}
-                    variant="outlined"
-                    color={'info'}
-                  />
-                  <Box sx={{ py: 1, textAlign: 'right' }}>
-                    <Typography color="textSecondary" variant="body1">
-                      <Link to="/recuperar/senha" variant="h6">
-                        Esqueci minha senha
-                      </Link>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ py: 1, textAlign: 'center' }}>
-                    <Button
-                      color="primary"
-                      size="large"
-                      type="submit"
-                      variant="contained"
-                      sx={{ mt: 1, width: '150px' }}
-                      title="Login"
-                      startIcon={<LoginIcon titleAccess="Login" />}
-                    >
-                      Login
-                    </Button>
-                  </Box>
-                </form>
-              )}
-            </Formik>
-          </Card>
-        </Container>
-      </Box>
+              Entrar
+            </Button>
+          </Form.Item>
+          <Form.Item style={{ textAlign: 'right' }}>
+            <Link to="/recuperar/senha">Esqueci minha senha</Link>
+          </Form.Item>
+        </Form>
+      </Card>
     </>
   );
 };
